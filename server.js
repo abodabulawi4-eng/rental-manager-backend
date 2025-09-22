@@ -13,11 +13,8 @@ const port = 5000;
 const SECRET_KEY = 'your_super_secret_key';
 
 // 2. Apply middleware
-const corsOptions = {
-    origin: 'https://prismatic-sorbet-e64d09.netlify.app'
-};
-
-app.use(cors(corsOptions));
+// تم تعديل هذا الجزء للسماح بجميع الروابط
+app.use(cors());
 app.use(bodyParser.json());
 
 // 3. Connect to the database and create tables
@@ -433,5 +430,5 @@ app.get('/dashboard', authenticateToken, (req, res) => {
 
 // 5. Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
