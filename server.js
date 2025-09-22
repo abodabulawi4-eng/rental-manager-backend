@@ -38,7 +38,7 @@ const createTables = () => {
         db.run(`DROP TABLE IF EXISTS expenses`);
 
         db.run(`CREATE TABLE users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             email TEXT UNIQUE,
             password TEXT,
             role TEXT DEFAULT 'user',
@@ -46,7 +46,7 @@ const createTables = () => {
         )`);
 
         db.run(`CREATE TABLE properties (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             user_id INTEGER,
             name TEXT,
             address TEXT,
@@ -55,7 +55,7 @@ const createTables = () => {
         )`);
 
         db.run(`CREATE TABLE tenants (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             user_id INTEGER,
             property_id INTEGER,
             full_name TEXT,
@@ -68,7 +68,7 @@ const createTables = () => {
         )`);
 
         db.run(`CREATE TABLE invoices (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             user_id INTEGER,
             tenant_id INTEGER,
             amount REAL,
@@ -80,7 +80,7 @@ const createTables = () => {
         )`);
 
         db.run(`CREATE TABLE expenses (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             user_id INTEGER,
             description TEXT,
             amount REAL,
