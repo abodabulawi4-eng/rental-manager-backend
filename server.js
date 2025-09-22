@@ -16,6 +16,7 @@ const SECRET_KEY = 'your_super_secret_key';
 const corsOptions = {
     origin: 'https://prismatic-sorbet-e64d09.netlify.app'
 };
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
