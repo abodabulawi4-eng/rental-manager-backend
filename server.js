@@ -428,7 +428,7 @@ app.get('/dashboard', authenticateToken, (req, res) => {
             });
         });
     });
-});
+};
 
 // 5. Start the server
 app.listen(port, () => {
