@@ -266,6 +266,22 @@ app.get('/tenants', authenticateToken, (req, res) => {
     });
 });
 
+// **--- لقد قمت بإضافة هذا الكود ---**
+app.get('/tenants/search', authenticateToken, (req, res) => {
+    const { name } = req.query;
+    if (!name) {
+        return res.status(400).json({ error: 'Name parameter is required for search.' });
+    }
+
+    db.all('SELECT * FROM tenants WHERE user_id = ? AND full_name LIKE ?', [req.user.id, `%${name}%`], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(rows);
+    });
+});
+// **--- انتهاء الكود المُضاف ---**
+
 app.post('/tenants', authenticateToken, (req, res) => {
     const { property_id, full_name, phone, address, start_date, rent_amount } = req.body;
     db.run('INSERT INTO tenants (user_id, property_id, full_name, phone, address, start_date, rent_amount) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.user.id, property_id, full_name, phone, address, start_date, rent_amount], function(err) {
@@ -430,5 +446,5 @@ app.get('/dashboard', authenticateToken, (req, res) => {
 
 // 5. Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
